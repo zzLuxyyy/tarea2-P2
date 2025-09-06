@@ -2,6 +2,8 @@
 #include "../include/lseSocios.h"
 
 struct rep_lseSocios {
+	TSocio socios[MAX_SOCIOS]; // EN CONSTRUCCIÓN!
+	int tope;
 };
 
 TLSESocios crearTLSESociosVacia(){
@@ -13,9 +15,14 @@ bool esVaciaTLSESocios(TLSESocios lseSocios){
 }
 
 void imprimirTLSESocios(TLSESocios lseSocios){
+	
 }
 
 void liberarTLSESocios(TLSESocios &lseSocios){
+	for (int i = 0; i < lseSocios->tope; i++)
+        {
+            liberarTLSESocios(lseSocios->socios[i]);
+        }
 }
 
 void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio){
@@ -38,4 +45,15 @@ nat cantidadTLSESocios(TLSESocios lseSocios){
 }
 
 void removerSocioTLSESocios(TLSESocios &lseSocios, int ci){
+	int i = 0;
+	while (i<lseSocios->tope && TSocio(ci->socios[i] != ci))
+	{
+		i++;
+	} 
+
+	liberarTLSESocios(lseSocios->socios[i]);
+	lseSocios->socios[i] = lseSocios->socios[lseSocios->tope -1];
+	lseSocios->tope--;
+
+	// EN CONSTRUCCIÓN!
 }

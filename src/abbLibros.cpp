@@ -2,10 +2,14 @@
 #include "../include/abbLibros.h"
 
 struct rep_abbLibros {
+    int tope;
 };
 
 TABBLibros crearTABBLibrosVacio(){
-    return NULL;
+    TABBLibros nuevoTABBLibro = new rep_abbLibros;
+    nuevoTABBLibro->tope = 0;
+    return nuevoTABBLibro;
+    // Creo que falta lo del arbol binario
 }
 
 void insertarLibroTABBLibros(TABBLibros &abbLibros, TLibro libro){

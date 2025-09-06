@@ -4,10 +4,13 @@ struct nodoDoble{
 };
 
 struct rep_ldePrestamos {
+    int tope;
 };
 
 TLDEPrestamos crearTLDEPrestamosVacia(){
-    return NULL;
+    TLDEPrestamos nuevoPrestamo = new rep_ldePrestamos;
+    nuevoPrestamo->tope = 0;
+    return nuevoPrestamo;
 }
 
 void insertarTLDEPrestamos(TLDEPrestamos &ldePrestamos, TPrestamo prestamo){
