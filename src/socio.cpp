@@ -21,25 +21,27 @@ nuevosocio->topegenerosfavoritos = 0;
     return rep_socio;
 }
 
+
+// Función que imprime la información del socio en el siguiente formato 
 void imprimirTSocio(TSocio socio){
 
-
-
-    // Función que imprime la información del socio en el siguiente formato (donde los géneros favoritos
-// se imprimen en el orden en el que fueron agregados):
-//
-printf ("Socio <%d \n>: <%s \n> <%s \n>", socio->ci, socio->nombre, socio->apellido); // Socio <CI>: <nombre> <apellido>
-printf ("Fecha de alta: <>") // Fecha de alta: <Fecha de Alta> //me tengo q ir
-// Géneros favoritos: <id genero favorito 1> <id genero favorito 2> ... <id genero favorito n> 
-/* Requisitos específicos de la implementación solicitada: */
-// Debe ejecutar en O(1) peor caso 
+printf ("Socio <%d>: <%s> <%s>\n", socio->ci, socio->nombre, socio->apellido);
+printf("Fecha de alta: <%u/%u/%u>\n", socio->fechaAlta->dia, socio->fechaAlta->mes, socio->fechaAlta->anio); 
+printf("Géneros favoritos: " )
+    for int i=0 < topegenerosfavoritos, i++; {
+        printf("<$d>", generosfavoritos[i])  //si esto funciona es 1 milagro
+}
 }
 
+
 void liberarTSocio(TSocio &socio){
+    liberartfecha (socio->fechaAlta);
+    delete socio;
+    socio=NULL;
 }
 
 int ciTSocio(TSocio socio){
-    return 0;
+    return socio->ci;
 }
 
 char* nombreTSocio(TSocio socio){
@@ -51,20 +53,35 @@ char* apellidoTSocio(TSocio socio){
 }
 
 TFecha fechaAltaTSocio(TSocio socio){
-    return NULL;
+    return socio->fechaAlta;
 }
 
 void agregarGeneroFavoritoTSocio(TSocio &socio, int idGenero){
+    if (socio->topegenerosfaoritos < MAX_GENEROS_FAVORITOS){
+        socio->generosfavoritos[socio->topegenerosfavoritos] = idgenero;
+        socio->topegenerosfaoritos++;
+    }
 }
 
 bool tieneGeneroFavoritoTSocio(TSocio socio, int idGenero){
+    for (i = 0, i < socio->topegenerosfaoritos, i++) {
+        if socio->topegenerosfaoritos[i] == idgenero {
+            return true
+        }
+    }
     return false;
 }
 
 int cantidadGenerosFavoritosTSocio(TSocio socio){
-    return 0;
+    return socio->topegenerosfavoritos;
 }
 
 TSocio copiarTSocio(TSocio socio){
-    return NULL;
+    Tsocio copia = crearTSocio(socio->ci, socio->nombre, socio->apellido, socio->fechaAlta->dia, socio->fechaAlta->mes, socio->fechaAlta->anio)
+
+    for (i = 0, i < socio->topegenerosfavoritos, i++){
+        agregarGeneroFavoritoTSocio(copia, socio->generosfavoritos[i]){
+    }       
+    return copia;
+}
 }
