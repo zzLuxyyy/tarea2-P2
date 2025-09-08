@@ -1,56 +1,103 @@
 
 #include "../include/abbLibros.h"
 
-struct rep_abbLibros {
-    int tope;
+struct nodoABB
+{
+    // Struct del nodo para el arbol binario de busqueda.
+    TLibro libro;
+    nodoABB *izq;
+    nodoABB *der;
 };
 
-TABBLibros crearTABBLibrosVacio(){
-    TABBLibros nuevoTABBLibro = new rep_abbLibros;
-    nuevoTABBLibro->tope = 0;
-    return nuevoTABBLibro;
-    // Creo que falta lo del arbol binario
+struct rep_abbLibros
+{
+    nodoABB *raiz;
+    int cantidad;
+};
+
+TABBLibros crearTABBLibrosVacio()
+{
+    TABBLibros nuevoABB = new rep_abbLibros;
+    nuevoABB->raiz = NULL;
+    nuevoABB->cantidad = 0;
+    return nuevoABB;
 }
 
-void insertarLibroTABBLibros(TABBLibros &abbLibros, TLibro libro){
+void insertarLibroTABBLibros(TABBLibros &abbLibros, TLibro libro)
+{
 }
 
-void imprimirTABBLibros(TABBLibros abbLibros){
+void imprimirAux(nodoABB *nodo)
+{
+    if (nodo != NULL)
+    {
+        imprimirAux(nodo->izq);
+        imprimirTLibro(nodo->libro);
+        imprimirAux(nodo->der);
+    }
 }
 
-void liberarTABBLibros(TABBLibros &abbLibros){
+void imprimirTABBLibros(TABBLibros abbLibros)
+{
+    imprimirAux(abbLibros->raiz);
 }
 
-bool existeLibroTABBLibros(TABBLibros abbLibros, int isbn){
+void liberarArbol(nodoABB* &nodo) {
+    if (nodo != NULL) {
+        liberarArbol(nodo->izq);
+        liberarArbol(nodo->der);
+        liberarTLibro(nodo->libro);
+        delete nodo;
+        nodo = NULL;
+    }
+}
+
+void liberarTABBLibros(TABBLibros &abbLibros)
+{
+    liberarArbol(abbLibros->raiz);
+    delete abbLibros;
+    abbLibros = NULL;
+}
+
+bool existeLibroTABBLibros(TABBLibros abbLibros, int isbn)
+{
     return false;
 }
 
-TLibro obtenerLibroTABBLibros(TABBLibros abbLibros, int isbn){
+TLibro obtenerLibroTABBLibros(TABBLibros abbLibros, int isbn)
+{
     return NULL;
 }
 
-nat alturaTABBLibros(TABBLibros abbLibros){
+nat alturaTABBLibros(TABBLibros abbLibros)
+{
     return 0;
 }
 
-TLibro maxISBNLibroTABBLibros(TABBLibros abbLibros){
+TLibro maxISBNLibroTABBLibros(TABBLibros abbLibros)
+{
     return NULL;
 }
 
-void removerLibroTABBLibros(TABBLibros &abbLibros, int isbn){
+void removerLibroTABBLibros(TABBLibros &abbLibros, int isbn)
+{
 }
 
-int cantidadTABBLibros(TABBLibros abbLibros){
+int cantidadTABBLibros(TABBLibros abbLibros)
+{
     return 0;
 }
 
-void obtenerNesimoLibroTABBLibrosAux(TABBLibros abbLibros, int n, int &k, TLibro &res){
+void obtenerNesimoLibroTABBLibrosAux(TABBLibros abbLibros, int n, int &k, TLibro &res)
+{
 }
 
-TLibro obtenerNesimoLibroTABBLibros(TABBLibros abbLibros, int n){
+TLibro obtenerNesimoLibroTABBLibros(TABBLibros abbLibros, int n)
+{
     return NULL;
 }
 
-TABBLibros filtradoPorGeneroTABBLibros(TABBLibros abbLibros, int genero) {
+TABBLibros filtradoPorGeneroTABBLibros(TABBLibros abbLibros, int genero)
+{
     return NULL;
 }

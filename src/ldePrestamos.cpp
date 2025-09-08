@@ -1,50 +1,60 @@
 #include "../include/ldePrestamos.h"
 
-struct nodoDoble{
+struct nodoDoble
+{
 };
 
-struct rep_ldePrestamos {
+struct rep_ldePrestamos
+{
     int tope;
 };
 
-TLDEPrestamos crearTLDEPrestamosVacia(){
+TLDEPrestamos crearTLDEPrestamosVacia()
+{
     TLDEPrestamos nuevoPrestamo = new rep_ldePrestamos;
     nuevoPrestamo->tope = 0;
     return nuevoPrestamo;
 }
 
-void insertarTLDEPrestamos(TLDEPrestamos &ldePrestamos, TPrestamo prestamo){
+void insertarTLDEPrestamos(TLDEPrestamos &ldePrestamos, TPrestamo prestamo)
+{
 }
 
-void liberarTLDEPrestamos(TLDEPrestamos &ldePrestamos){
+void liberarTLDEPrestamos(TLDEPrestamos &ldePrestamos)
+{
 }
 
-void imprimirTLDEPrestamos(TLDEPrestamos ldePrestamos){
+void imprimirTLDEPrestamos(TLDEPrestamos ldePrestamos)
+{
 }
 
-void imprimirInvertidoTLDEPrestamos(TLDEPrestamos ldePrestamos){
+void imprimirInvertidoTLDEPrestamos(TLDEPrestamos ldePrestamos)
+{
 }
 
-nat cantidadTLDEPrestamos(TLDEPrestamos ldePrestamos){
+nat cantidadTLDEPrestamos(TLDEPrestamos ldePrestamos)
+{
     return 0;
 }
 
-TPrestamo obtenerPrimeroTLDEPrestamos(TLDEPrestamos ldePrestamos){
+TPrestamo obtenerPrimeroTLDEPrestamos(TLDEPrestamos ldePrestamos)
+{
     return NULL;
 }
 
-TPrestamo obtenerUltimoTLDEPrestamos(TLDEPrestamos ldePrestamos){
+TPrestamo obtenerUltimoTLDEPrestamos(TLDEPrestamos ldePrestamos)
+{
     return NULL;
 }
 
-TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n){
+TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n)
+{
     return NULL;
 }
 
 // criterio = 0 -> prestamos retornados
 // criterio = 1 -> prestamos no retornados
-TLDEPrestamos filtrarPrestamosTLDEPrestamos(TLDEPrestamos &ldePrestamos, int criterio){
+TLDEPrestamos filtrarPrestamosTLDEPrestamos(TLDEPrestamos &ldePrestamos, int criterio)
+{
     return NULL;
 }
-
-

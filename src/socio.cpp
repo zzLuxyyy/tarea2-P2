@@ -1,5 +1,5 @@
 #include "../include/socio.h"
-#include <string.h> //lo necesitamos si o si para usar strcpy
+#include <string.h> //strcpy
 #include <stdio.h>
 
 struct rep_socio
@@ -29,13 +29,14 @@ TSocio crearTSocio(int ci, const char nombre[MAX_NOMBRE_SOCIO], const char apell
 void imprimirTSocio(TSocio socio)
 {
     printf("Socio <%d>: <%s> <%s>\n", socio->ci, socio->nombre, socio->apellido);
-    printf("Fecha de alta: <%u/%u/%u>\n", socio->fechaAlta->dia, socio->fechaAlta->mes, socio->fechaAlta->anio);
+    printf("Fecha de alta: ");
+    imprimirTFecha(socio->fechaAlta);
     printf("Géneros favoritos: ");
-    for (int i = 0 < topegenerosfavoritos; i++;)
-
+    for (int i = 0; i < socio->topegenerosfavoritos; i++)
     {
-        printf("<$d>", generosfavoritos[i]); // si esto funciona es 1 milagro
+        printf("%d ", socio->generosfavoritos[i]);
     }
+    printf("\n");
 }
 
 void liberarTSocio(TSocio &socio)
@@ -52,12 +53,12 @@ int ciTSocio(TSocio socio)
 
 char *nombreTSocio(TSocio socio)
 {
-    return NULL;
+    return socio->nombre;
 }
 
 char *apellidoTSocio(TSocio socio)
 {
-    return NULL;
+    return socio->apellido;
 }
 
 TFecha fechaAltaTSocio(TSocio socio)
@@ -78,7 +79,7 @@ bool tieneGeneroFavoritoTSocio(TSocio socio, int idGenero)
 {
     for (int i = 0; i < socio->topegenerosfavoritos; i++)
     {
-        if (socio->topegenerosfavoritos[i] == idGenero)
+        if (socio->generosfavoritos[i] == idGenero) // El error estaba en *tope*generosfavoritos.
         {
             return true;
         }
@@ -93,13 +94,14 @@ int cantidadGenerosFavoritosTSocio(TSocio socio)
 
 TSocio copiarTSocio(TSocio socio)
 {
-    TSocio copia = crearTSocio(socio->ci, socio->nombre, socio->apellido, socio->fechaAlta->dia, socio->fechaAlta->mes, socio->fechaAlta->anio);
+    TSocio copia = crearTSocio(socio->ci, socio->nombre, socio->apellido, 1, 1, 1);
+    liberarTFecha(copia->fechaAlta);
+    copia->fechaAlta = copiarTFecha(fechaAltaTSocio(socio));
 
     for (int i = 0; i < socio->topegenerosfavoritos; i++)
     {
         agregarGeneroFavoritoTSocio(copia, socio->generosfavoritos[i]);
-        {
-        }
-        return copia;
     }
+
+    return copia;
 }

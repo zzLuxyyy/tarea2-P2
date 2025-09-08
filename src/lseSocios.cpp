@@ -1,59 +1,104 @@
 
 #include "../include/lseSocios.h"
 
-struct rep_lseSocios {
-	TSocio socios[MAX_SOCIOS]; // EN CONSTRUCCIÓN!
-	int tope;
+struct nodo
+{
+	TSocio socio;
+	nodo *sig;
 };
 
-TLSESocios crearTLSESociosVacia(){
-    return NULL;
+struct rep_lseSocios
+{
+	nodo *primero;
+	nat cantidad;
+};
+
+TLSESocios crearTLSESociosVacia()
+{
+	TLSESocios nueva = new rep_lseSocios;
+	nueva->primero = NULL;
+	nueva->cantidad = 0;
+	return nueva;
 }
 
-bool esVaciaTLSESocios(TLSESocios lseSocios){
+bool esVaciaTLSESocios(TLSESocios lseSocios)
+{
+    return lseSocios->primero == NULL;
+}
+
+void imprimirTLSESocios(TLSESocios lseSocios)
+{	
+    printf("Lista de Socios:\n");
+	nodo* actual = lseSocios->primero;
+    while (actual != NULL) {
+        imprimirTSocio(actual->socio);
+        actual = actual->sig;
+    }
+
+}
+
+void liberarTLSESocios(TLSESocios &lseSocios)
+{
+	nodo *actual = lseSocios->primero;
+	while (actual != NULL)
+	{
+		nodo *aBorrar = actual;
+		actual = actual->sig;
+		liberarTSocio(aBorrar->socio);
+		delete aBorrar;
+	}
+	delete lseSocios;
+	lseSocios = NULL;
+}
+
+void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio)
+{
+}
+
+bool existeSocioTLSESocios(TLSESocios lseSocios, int ci)
+{
 	return false;
 }
 
-void imprimirTLSESocios(TLSESocios lseSocios){
-	
-}
-
-void liberarTLSESocios(TLSESocios &lseSocios){
-	for (int i = 0; i < lseSocios->tope; i++)
-        {
-            liberarTLSESocios(lseSocios->socios[i]);
-        }
-}
-
-void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio){
-}
-
-bool existeSocioTLSESocios(TLSESocios lseSocios, int ci){
-	return false;
-}
-
-TSocio obtenerSocioTLSESocios(TLSESocios lseSocios, int ci){
-    return NULL;
-}
-
-TSocio obtenerNesimoTLSESocios(TLSESocios lseSocios, int n){
+TSocio obtenerSocioTLSESocios(TLSESocios lseSocios, int ci)
+{
 	return NULL;
 }
 
-nat cantidadTLSESocios(TLSESocios lseSocios){
+TSocio obtenerNesimoTLSESocios(TLSESocios lseSocios, int n)
+{
+	return NULL;
+}
+
+nat cantidadTLSESocios(TLSESocios lseSocios)
+{
 	return 0;
 }
 
-void removerSocioTLSESocios(TLSESocios &lseSocios, int ci){
-	int i = 0;
-	while (i<lseSocios->tope && TSocio(ci->socios[i] != ci))
+void removerSocioTLSESocios(TLSESocios &lseSocios, int ci)
+{
+	nodo *actual = lseSocios->primero;
+	nodo *anterior = NULL;
+
+	while (actual != NULL && ciTSocio(actual->socio) != ci)
 	{
-		i++;
-	} 
+		anterior = actual;
+		actual = actual->sig;
+	}
 
-	liberarTLSESocios(lseSocios->socios[i]);
-	lseSocios->socios[i] = lseSocios->socios[lseSocios->tope -1];
-	lseSocios->tope--;
+	if (actual != NULL)
+	{
+		if (anterior == NULL)
+		{
+			lseSocios->primero = actual->sig;
+		}
+		else
+		{
+			anterior->sig = actual->sig;
+		}
 
-	// EN CONSTRUCCIÓN!
+		liberarTSocio(actual->socio);
+		delete actual;
+		lseSocios->cantidad--;
+	}
 }

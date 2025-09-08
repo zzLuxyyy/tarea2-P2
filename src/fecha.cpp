@@ -7,7 +7,10 @@ struct rep_fecha
 
 TFecha crearTFecha(nat dia, nat mes, nat anio)
 {
-    TFecha nuevaFecha = NULL;
+    TFecha nuevaFecha = new rep_fecha;
+    nuevaFecha->dia = dia;
+    nuevaFecha->mes = mes;
+    nuevaFecha->anio = anio;
     return nuevaFecha;
 }
 
@@ -19,16 +22,15 @@ void liberarTFecha(TFecha &fecha)
 
 void imprimirTFecha(TFecha fecha)
 {
-
     printf("%u/%u/%u\n", fecha->dia, fecha->mes, fecha->anio);
 }
 
 TFecha copiarTFecha(TFecha fecha)
 {
     if (fecha == NULL)
-        return NULL; // por si no me llegan a pasar ninguna fecha
-    else
-        return crearTFecha(fecha->dia, fecha->mes, fecha->anio);
+        return NULL;
+
+    return crearTFecha(fecha->dia, fecha->mes, fecha->anio);
 }
 
 // Funciones auxiliares que voy a crear para aumentar Tfecha
@@ -39,6 +41,7 @@ bool esBisiesto(nat anio)
 
     return false;
 }
+
 static nat diasMes(nat mes, nat anio)
 {
     switch (mes)
@@ -50,7 +53,6 @@ static nat diasMes(nat mes, nat anio)
         return 30;
     case 2:
         return esBisiesto(anio) ? 29 : 28;
-
     default:
         return 31;
     }
@@ -74,6 +76,17 @@ void aumentarTFecha(TFecha &fecha, nat dias)
 
 int compararTFechas(TFecha fecha1, TFecha fecha2)
 {
-    int res = 0;
-    return res;
+    if (fecha1->anio != fecha2->anio)
+    {
+        return fecha1->anio > fecha2->anio ? 1 : -1;
+    }
+    if (fecha1->mes != fecha2->mes)
+    {
+        return fecha1->mes > fecha2->mes ? 1 : -1;
+    }
+    if (fecha1->dia != fecha2->dia)
+    {
+        return fecha1->dia > fecha2->dia ? 1 : -1;
+    }
+    return 0;
 }
