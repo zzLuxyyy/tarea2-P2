@@ -58,29 +58,40 @@ TSocio socioTPrestamo(TPrestamo prestamo)
 
 TFecha fechaRetiroTPrestamo(TPrestamo prestamo)
 {
-  return NULL;
+  return prestamo->fechaRetiro;
 }
 
 TFecha fechaDevolucionTPrestamo(TPrestamo prestamo)
 {
-  return NULL;
+  return prestamo->fechaDevolucion;
 }
 
 TLibro libroTPrestamo(TPrestamo prestamo)
 {
-  return NULL;
+  return prestamo->libro;
 }
 
 bool fueRetornadoTPrestamo(TPrestamo prestamo)
 {
-  return false;
+return prestamo->fechaDevolucion != NULL;
 }
 
 void actualizarFechaDevolucionTPrestamo(TPrestamo prestamo, TFecha fechaDevolucion)
 {
+  if (prestamo->fechaDevolucion != NULL) {
+        liberarTFecha(prestamo->fechaDevolucion);
+    }
+    
+    prestamo->fechaDevolucion = fechaDevolucion;
 }
 
-TPrestamo copiarTPrestamo(TPrestamo prestamo)
-{
-  return NULL;
+TPrestamo copiarTPrestamo(TPrestamo prestamo) {
+  
+  TPrestamo copia = crearTPrestamo(prestamo->socio, prestamo->libro, prestamo->fechaRetiro);
+
+  if (prestamo->fechaDevolucion != NULL) {
+    copia->fechaDevolucion = copiarTFecha(prestamo->fechaDevolucion);
+   }
+    
+    return copia;
 }
