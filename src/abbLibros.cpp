@@ -59,9 +59,23 @@ void liberarTABBLibros(TABBLibros &abbLibros)
     abbLibros = NULL;
 }
 
-bool existeLibroTABBLibros(TABBLibros abbLibros, int isbn)
-{
-    return false;
+bool existeLibroAux(nodoABB* nodo, int isbn) {
+    if (nodo == NULL) {
+        return false;
+    } else {
+        int isbnActual = isbnTLibro(nodo->libro);
+        if (isbn == isbnActual) {
+            return true;
+        } else if (isbn < isbnActual) {
+            return existeLibroAux(nodo->izq, isbn);
+        } else {
+            return existeLibroAux(nodo->der, isbn);
+        }
+    }
+}
+
+bool existeLibroTABBLibros(TABBLibros abbLibros, int isbn) {
+    return existeLibroAux(abbLibros->raiz, isbn);
 }
 
 TLibro obtenerLibroTABBLibros(TABBLibros abbLibros, int isbn)

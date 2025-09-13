@@ -29,16 +29,37 @@ void insertarTLDEPrestamos(TLDEPrestamos &ldePrestamos, TPrestamo prestamo)
 
 void liberarTLDEPrestamos(TLDEPrestamos &ldePrestamos)
 {
+    nodoDoble *actual = ldePrestamos->primero;
+    while (actual != NULL)
+    {
+        nodoDoble *aBorrar = actual;
+        actual = actual->sig;
+        liberarTPrestamo(aBorrar->prestamo);
+        delete aBorrar;
+    }
+    delete ldePrestamos;
+    ldePrestamos = NULL;
 }
 
 void imprimirTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
+    printf("LDE Préstamos:\n");
+    nodoDoble* actual = ldePrestamos->primero;
+    while (actual != NULL) {
+        imprimirTPrestamo(actual->prestamo);
+        actual = actual->sig;
+    }
 }
 
 void imprimirInvertidoTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
+    printf("LDE Préstamos:\n");
+    nodoDoble* actual = ldePrestamos->ultimo;
+    while (actual != NULL) {
+        imprimirTPrestamo(actual->prestamo);
+        actual = actual->ant;
+    }
 }
-
 nat cantidadTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
     return ldePrestamos->tope;
