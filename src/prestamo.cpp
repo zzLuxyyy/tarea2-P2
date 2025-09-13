@@ -35,6 +35,7 @@ void imprimirTPrestamo(TPrestamo prestamo)
   }
   else
   {
+
   }
 }
 void liberarTPrestamo(TPrestamo &prestamo)
@@ -53,7 +54,7 @@ void liberarTPrestamo(TPrestamo &prestamo)
 
 TSocio socioTPrestamo(TPrestamo prestamo)
 {
-  return NULL;
+  return prestamo->socio;
 }
 
 TFecha fechaRetiroTPrestamo(TPrestamo prestamo)

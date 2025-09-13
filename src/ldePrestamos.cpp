@@ -2,16 +2,23 @@
 
 struct nodoDoble
 {
+    TPrestamo prestamo;
+    nodoDoble *sig;
+    nodoDoble *ant;
 };
 
 struct rep_ldePrestamos
-{
-    int tope;
+{   
+    nodoDoble *primero;
+    nodoDoble *ultimo;
+    nat tope;
 };
 
 TLDEPrestamos crearTLDEPrestamosVacia()
 {
     TLDEPrestamos nuevoPrestamo = new rep_ldePrestamos;
+    nuevoPrestamo->primero = NULL;
+    nuevoPrestamo->ultimo = NULL;
     nuevoPrestamo->tope = 0;
     return nuevoPrestamo;
 }
@@ -34,7 +41,7 @@ void imprimirInvertidoTLDEPrestamos(TLDEPrestamos ldePrestamos)
 
 nat cantidadTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
-    return 0;
+    return ldePrestamos->tope;
 }
 
 TPrestamo obtenerPrimeroTLDEPrestamos(TLDEPrestamos ldePrestamos)
@@ -44,7 +51,8 @@ TPrestamo obtenerPrimeroTLDEPrestamos(TLDEPrestamos ldePrestamos)
 
 TPrestamo obtenerUltimoTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
-    return NULL;
+    if (ldePrestamos->ultimo == NULL) return NULL;
+    return ldePrestamos->ultimo->prestamo;
 }
 
 TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n)

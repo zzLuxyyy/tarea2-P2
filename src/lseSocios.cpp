@@ -34,7 +34,6 @@ void imprimirTLSESocios(TLSESocios lseSocios)
         imprimirTSocio(actual->socio);
         actual = actual->sig;
     }
-
 }
 
 void liberarTLSESocios(TLSESocios &lseSocios)
@@ -72,7 +71,7 @@ TSocio obtenerNesimoTLSESocios(TLSESocios lseSocios, int n)
 
 nat cantidadTLSESocios(TLSESocios lseSocios)
 {
-	return 0;
+	return lseSocios->cantidad;
 }
 
 void removerSocioTLSESocios(TLSESocios &lseSocios, int ci)

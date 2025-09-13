@@ -85,7 +85,7 @@ void removerLibroTABBLibros(TABBLibros &abbLibros, int isbn)
 
 int cantidadTABBLibros(TABBLibros abbLibros)
 {
-    return 0;
+    return abbLibros->cantidad;
 }
 
 void obtenerNesimoLibroTABBLibrosAux(TABBLibros abbLibros, int n, int &k, TLibro &res)

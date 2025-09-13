@@ -1,6 +1,7 @@
 #include "../include/socio.h"
 #include <string.h> //strcpy
 #include <stdio.h>
+#include "fecha.h"
 
 struct rep_socio
 {
@@ -27,30 +28,31 @@ TSocio crearTSocio(int ci, const char nombre[MAX_NOMBRE_SOCIO], const char apell
 
 // Función que imprime la información del socio en el siguiente formato
 void imprimirTSocio(TSocio socio) {
-    // Formato: "Socio <CI>: <nombre> <apellido>"
     printf("Socio %d: %s %s\n", socio->ci, socio->nombre, socio->apellido);
 
-    // Formato: "Fecha de alta: <dd/mm/yyyy>"
+    
     printf("Fecha de alta: ");
-    imprimirTFecha(socio->fechaAlta); // Esta función ya imprime la fecha y el salto de línea
-
-    // Formato: "Géneros favoritos: <id1> <id2> ..."
+    imprimirTFecha(socio->fechaAlta); 
    printf("Géneros favoritos: ");
 
     for (int i = 0; i < socio->topeGeneros; i++) {
-        printf("%d", socio->generosFavoritos[i]);
+        printf(" %d", socio->generosFavoritos[i]);
     }
 
     printf("\n");
 }
 
-
-
 void liberarTSocio(TSocio &socio)
 {
-    liberarTFecha(socio->fechaAlta);
-    delete socio;
-    socio = NULL;
+    if (socio != NULL) {
+        if (socio->fechaAlta != NULL) {
+            liberarTFecha(socio->fechaAlta);  
+            socio->fechaAlta = NULL;          
+        
+        delete socio;
+        socio = NULL;  
+        }
+    }
 }
 
 int ciTSocio(TSocio socio)
@@ -100,14 +102,19 @@ int cantidadGenerosFavoritosTSocio(TSocio socio){
 
 TSocio copiarTSocio(TSocio socio)
 {
-    TSocio copia = crearTSocio(socio->ci, socio->nombre, socio->apellido, 1, 1, 1);
-    liberarTFecha(copia->fechaAlta);
-    copia->fechaAlta = copiarTFecha(fechaAltaTSocio(socio));
-
-    for (int i = 0; i < socio->topeGeneros; i++)
-    {
-        agregarGeneroFavoritoTSocio(copia, socio->generosFavoritos[i]);
+    if (socio == NULL) return NULL;
+    
+    // Crear copia sin usar crearTSocio para evitar leaks
+    TSocio copia = new rep_socio;
+    copia->ci = socio->ci;
+    strcpy(copia->nombre, socio->nombre);
+    strcpy(copia->apellido, socio->apellido);
+    copia->fechaAlta = copiarTFecha(socio->fechaAlta);  // Copia profunda
+    copia->topeGeneros = socio->topeGeneros;
+    
+    for (int i = 0; i < socio->topeGeneros; i++) {
+        copia->generosFavoritos[i] = socio->generosFavoritos[i];
     }
-
+    
     return copia;
 }
