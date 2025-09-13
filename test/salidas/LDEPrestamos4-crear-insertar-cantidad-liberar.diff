@@ -1,0 +1,30 @@
+5c5
+< 10>La cantidad de préstamos en la lista es 1
+---
+> 10>La cantidad de préstamos en la lista es 0
+10c10
+< 19>La cantidad de préstamos en la lista es 2
+---
+> 19>La cantidad de préstamos en la lista es 0
+15c15
+< 28>La cantidad de préstamos en la lista es 3
+---
+> 28>La cantidad de préstamos en la lista es 0
+20c20
+< 37>La cantidad de préstamos en la lista es 4
+---
+> 37>La cantidad de préstamos en la lista es 0
+21a22,34
+> ==5546== 96 bytes in 8 blocks are definitely lost in loss record 4 of 7
+> ==5546==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5546==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+> ==5546==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+> ==5546==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+> ==5546==    by 0x10946E: main (principal.cpp:179)
+> ==5546== 
+> ==5546== 2,096 (128 direct, 1,968 indirect) bytes in 4 blocks are definitely lost in loss record 7 of 7
+> ==5546==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5546==    by 0x10D2B2: crearTPrestamo(rep_socio*, rep_libro*, rep_fecha*) (prestamo.cpp:14)
+> ==5546==    by 0x10B0A2: main_crearPrestamo(rep_prestamo*&, rep_socio*&, rep_libro*&, rep_fecha*&) (principal.cpp:590)
+> ==5546==    by 0x1099AE: main (principal.cpp:249)
+> ==5546== 

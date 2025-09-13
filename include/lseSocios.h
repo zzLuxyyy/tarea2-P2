@@ -62,7 +62,7 @@ void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio);
 bool existeSocioTLSESocios(TLSESocios lseSocios, int ci);
 
 // Función para obtener un socio determinado de la lista.
-// Recibe una CI de un socio y regresa una copia del elemento TSocio con dicha CI.
+// Recibe una CI de un socio y regresa un puntero al elemento TSocio con dicha CI.
 // PRE: existeSocioTLSESocios(lseSocios, ci) == true
 /* Requisitos específicos de la implementación solicitada: */
 // La función es O(n) peor caso, siendo n la cantidad de socios en la lista.

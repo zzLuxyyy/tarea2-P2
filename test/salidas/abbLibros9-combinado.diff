@@ -1,0 +1,62 @@
+9,36c9,40
+< 22>23>24>Se insertó el libro con ISBN 849550144 al árbol.
+< 25>26>27>Se insertó el libro con ISBN 880619315 al árbol.
+< 28>29>30>Se insertó el libro con ISBN 111213141 al árbol.
+< 31>32>33>Se insertó el libro con ISBN 123456789 al árbol.
+< 34>La altura del arbol es 7.
+< 35>El libro con ISBN 849550144 pertenece al árbol.
+< 36>El libro con ISBN 999001122 pertenece al árbol.
+< 37>El libro con ISBN 123456789 pertenece al árbol.
+< 38>El libro con ISBN 880619315 pertenece al árbol.
+< 39>El mayor ISBN en el árbol es 999001122.
+< 40>La cantidad de libros en el árbol es 10.
+< 41>El libro con ISBN 999001122 se removió del árbol.
+< 42>El libro con ISBN 171819202 se removió del árbol.
+< 43>El libro con ISBN 843397030 se removió del árbol.
+< 44>El libro con ISBN 880619315 se removió del árbol.
+< 45>La altura del arbol es 4.
+< 46>El libro con ISBN 849550144 pertenece al árbol.
+< 47>El libro con ISBN 999001122 NO pertenece al árbol.
+< 48>El mayor ISBN en el árbol es 849550144.
+< 49>La cantidad de libros en el árbol es 6.
+< 50>Libro nro 5 del abb libros:
+< Libro 316769177
+< Título: El guardián en el centeno
+< Autor: J.D. Salinger
+< Descripción: Holden narra sus días tras ser expulsado del colegio, en busca de sentido
+< Género: 1
+< Fecha de edición: 16/7/1951
+< 51>52>Fin.
+---
+> 22>23>24>Se insertó el libro con ISBN 849550144 al árbol==5658== Invalid read of size 4
+> ==5658==    at 0x10CC8F: isbnTLibro(rep_libro*) (libro.cpp:39)
+> ==5658==    by 0x10B957: main_maxISBNLibroABBLibros(rep_abbLibros*) (principal.cpp:776)
+> ==5658==    by 0x10A0EB: main (principal.cpp:337)
+> ==5658==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+> ==5658== 
+> ==5658== 
+> ==5658== Process terminating with default action of signal 11 (SIGSEGV)
+> ==5658==  Access not within mapped region at address 0x0
+> ==5658==    at 0x10CC8F: isbnTLibro(rep_libro*) (libro.cpp:39)
+> ==5658==    by 0x10B957: main_maxISBNLibroABBLibros(rep_abbLibros*) (principal.cpp:776)
+> ==5658==    by 0x10A0EB: main (principal.cpp:337)
+> ==5658==  If you believe this happened as a result of a stack
+> ==5658==  overflow in your program's main thread (unlikely but
+> ==5658==  possible), you can try to increase the size of the
+> ==5658==  main thread stack using the --main-stacksize= flag.
+> ==5658==  The main thread stack size used in this run was 8388608.
+> ==5658== 120 bytes in 10 blocks are definitely lost in loss record 3 of 7
+> ==5658==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5658==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+> ==5658==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+> ==5658==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+> ==5658==    by 0x10946E: main (principal.cpp:179)
+> ==5658== 
+> ==5658== 3,240 (3,120 direct, 120 indirect) bytes in 10 blocks are definitely lost in loss record 6 of 7
+> ==5658==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5658==    by 0x10CB9F: crearTLibro(int, char const*, char const*, char const*, char const*, int, rep_fecha*) (libro.cpp:16)
+> ==5658==    by 0x10A6E5: main_crearLibro(rep_libro*&, rep_fecha*&) (principal.cpp:442)
+> ==5658==    by 0x109594: main (principal.cpp:196)
+> ==5658== 
+> timeout: the monitored command dumped core
+> Segmentation fault

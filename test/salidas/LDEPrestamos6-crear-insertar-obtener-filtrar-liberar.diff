@@ -1,0 +1,71 @@
+4,7c4
+< 8>9>Préstamo en la posición 1:
+< Préstamo de libro Todos los fuegos el fuego a Jim Dear.
+< 8/9/2024
+< No retornado
+---
+> 8>9>No se puede invocar obtenerNesimoTLDEPrestamos con n = 1 porque la cantidad de elementos en la lista es 0.
+19,47c16,48
+< 34>35>Préstamo en la posición 4:
+< Préstamo de libro Cien años de soledad a Juan Diaz.
+< 8/11/2025
+< No retornado
+< 36>Préstamo en la posición 2:
+< Préstamo de libro La ratesa a Lucia Perez.
+< 8/10/2024
+< 15/10/2024
+< 37>Préstamo en la posición 1:
+< Préstamo de libro Todos los fuegos el fuego a Jim Dear.
+< 8/9/2024
+< No retornado
+< 38>#  Filtro prestamos retornados.
+< 39>LDE Préstamos:
+< Préstamo de libro La ratesa a Lucia Perez.
+< 8/10/2024
+< 15/10/2024
+< Préstamo de libro Lo bello y lo triste a Juan Diaz.
+< 8/11/2024
+< 15/11/2024
+< 40>#  Filtro prestamos no retornados.
+< 41>LDE Préstamos:
+< Préstamo de libro Todos los fuegos el fuego a Jim Dear.
+< 8/9/2024
+< No retornado
+< Préstamo de libro Cien años de soledad a Juan Diaz.
+< 8/11/2025
+< No retornado
+< 42>43>Fin.
+---
+> 34>35>No se puede invocar obtenerNesimoTLDEPrestamos con n = 4 porque la cantidad de elementos en la lista es 0.
+> 36>No se==5564== Invalid read of size 8
+> ==5564==    at 0x10DA8C: imprimirTLDEPrestamos(rep_ldePrestamos*) (ldePrestamos.cpp:47)
+> ==5564==    by 0x10C7ED: main_filtrarPrestamosLDEPrestamos(rep_ldePrestamos*) (principal.cpp:1011)
+> ==5564==    by 0x109F59: main (principal.cpp:316)
+> ==5564==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+> ==5564== 
+> ==5564== 
+> ==5564== Process terminating with default action of signal 11 (SIGSEGV)
+> ==5564==  Access not within mapped region at address 0x0
+> ==5564==    at 0x10DA8C: imprimirTLDEPrestamos(rep_ldePrestamos*) (ldePrestamos.cpp:47)
+> ==5564==    by 0x10C7ED: main_filtrarPrestamosLDEPrestamos(rep_ldePrestamos*) (principal.cpp:1011)
+> ==5564==    by 0x109F59: main (principal.cpp:316)
+> ==5564==  If you believe this happened as a result of a stack
+> ==5564==  overflow in your program's main thread (unlikely but
+> ==5564==  possible), you can try to increase the size of the
+> ==5564==  main thread stack using the --main-stacksize= flag.
+> ==5564==  The main thread stack size used in this run was 8388608.
+> ==5564== 96 bytes in 8 blocks are definitely lost in loss record 6 of 12
+> ==5564==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5564==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+> ==5564==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+> ==5564==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+> ==5564==    by 0x10946E: main (principal.cpp:179)
+> ==5564== 
+> ==5564== 2,120 (128 direct, 1,992 indirect) bytes in 4 blocks are definitely lost in loss record 11 of 12
+> ==5564==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5564==    by 0x10D2B2: crearTPrestamo(rep_socio*, rep_libro*, rep_fecha*) (prestamo.cpp:14)
+> ==5564==    by 0x10B0A2: main_crearPrestamo(rep_prestamo*&, rep_socio*&, rep_libro*&, rep_fecha*&) (principal.cpp:590)
+> ==5564==    by 0x1099AE: main (principal.cpp:249)
+> ==5564== 
+> timeout: the monitored command dumped core
+> Segmentation fault

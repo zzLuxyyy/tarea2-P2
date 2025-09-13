@@ -1,0 +1,38 @@
+5c5
+< 8>La altura del arbol es 1.
+---
+> 8>La altura del arbol es 0.
+9c9
+< 17>La altura del arbol es 2.
+---
+> 17>La altura del arbol es 0.
+11c11
+< 21>La altura del arbol es 3.
+---
+> 21>La altura del arbol es 0.
+13c13
+< 25>La altura del arbol es 3.
+---
+> 25>La altura del arbol es 0.
+15c15
+< 29>La altura del arbol es 3.
+---
+> 29>La altura del arbol es 0.
+17c17
+< 33>La altura del arbol es 3.
+---
+> 33>La altura del arbol es 0.
+18a19,31
+> ==5611== 84 bytes in 7 blocks are definitely lost in loss record 2 of 3
+> ==5611==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5611==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+> ==5611==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+> ==5611==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+> ==5611==    by 0x10946E: main (principal.cpp:179)
+> ==5611== 
+> ==5611== 2,268 (2,184 direct, 84 indirect) bytes in 7 blocks are definitely lost in loss record 3 of 3
+> ==5611==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5611==    by 0x10CB9F: crearTLibro(int, char const*, char const*, char const*, char const*, int, rep_fecha*) (libro.cpp:16)
+> ==5611==    by 0x10A6E5: main_crearLibro(rep_libro*&, rep_fecha*&) (principal.cpp:442)
+> ==5611==    by 0x109594: main (principal.cpp:196)
+> ==5611== 

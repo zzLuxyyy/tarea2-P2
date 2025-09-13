@@ -1,0 +1,23 @@
+4,10c4,17
+< 8>Libro 843397030
+< Título: Ensayo sobre la ceguera
+< Autor: José Saramago
+< Descripción: Una epidemia de ceguera azota a una ciudad, revelando lo peor del ser humano
+< Género: 2
+< Fecha de edición: 1/10/1995
+< 9>10>Fin.
+---
+> 8>9>10>Fin.
+> ==5584== 12 bytes in 1 blocks are definitely lost in loss record 2 of 3
+> ==5584==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5584==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+> ==5584==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+> ==5584==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+> ==5584==    by 0x10946E: main (principal.cpp:179)
+> ==5584== 
+> ==5584== 324 (312 direct, 12 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
+> ==5584==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5584==    by 0x10CB9F: crearTLibro(int, char const*, char const*, char const*, char const*, int, rep_fecha*) (libro.cpp:16)
+> ==5584==    by 0x10A6E5: main_crearLibro(rep_libro*&, rep_fecha*&) (principal.cpp:442)
+> ==5584==    by 0x109594: main (principal.cpp:196)
+> ==5584== 

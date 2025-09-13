@@ -1,0 +1,32 @@
+==5575== Invalid read of size 8
+==5575==    at 0x10DA8C: imprimirTLDEPrestamos(rep_ldePrestamos*) (ldePrestamos.cpp:47)
+==5575==    by 0x10C7ED: main_filtrarPrestamosLDEPrestamos(rep_ldePrestamos*) (principal.cpp:1011)
+==5575==    by 0x109F59: main (principal.cpp:316)
+==5575==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==5575== 
+==5575== 
+==5575== Process terminating with default action of signal 11 (SIGSEGV)
+==5575==  Access not within mapped region at address 0x0
+==5575==    at 0x10DA8C: imprimirTLDEPrestamos(rep_ldePrestamos*) (ldePrestamos.cpp:47)
+==5575==    by 0x10C7ED: main_filtrarPrestamosLDEPrestamos(rep_ldePrestamos*) (principal.cpp:1011)
+==5575==    by 0x109F59: main (principal.cpp:316)
+==5575==  If you believe this happened as a result of a stack
+==5575==  overflow in your program's main thread (unlikely but
+==5575==  possible), you can try to increase the size of the
+==5575==  main thread stack using the --main-stacksize= flag.
+==5575==  The main thread stack size used in this run was 8388608.
+==5575== 24 bytes in 2 blocks are definitely lost in loss record 5 of 11
+==5575==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5575==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+==5575==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+==5575==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+==5575==    by 0x10946E: main (principal.cpp:179)
+==5575== 
+==5575== 524 (32 direct, 492 indirect) bytes in 1 blocks are definitely lost in loss record 10 of 11
+==5575==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5575==    by 0x10D2B2: crearTPrestamo(rep_socio*, rep_libro*, rep_fecha*) (prestamo.cpp:14)
+==5575==    by 0x10B0A2: main_crearPrestamo(rep_prestamo*&, rep_socio*&, rep_libro*&, rep_fecha*&) (principal.cpp:590)
+==5575==    by 0x1099AE: main (principal.cpp:249)
+==5575== 
+timeout: the monitored command dumped core
+Segmentation fault

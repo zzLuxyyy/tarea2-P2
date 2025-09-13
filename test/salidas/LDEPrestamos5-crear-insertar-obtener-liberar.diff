@@ -1,0 +1,33 @@
+6,9c6
+< 10>11>Ultimo préstamo:
+< Préstamo de libro Todos los fuegos el fuego a Jim Dear.
+< 8/9/2024
+< No retornado
+---
+> 10>11>No se puede obtener el último de la LDE de préstamos porque es vacía
+19,26c16,17
+< 32>33>Primer préstamo:
+< Préstamo de libro Todos los fuegos el fuego a Jim Dear.
+< 8/9/2024
+< No retornado
+< 34>Ultimo préstamo:
+< Préstamo de libro Cien años de soledad a Juan Diaz.
+< 8/11/2025
+< No retornado
+---
+> 32>33>No se puede obtener el primero de la LDE de préstamos porque es vacía
+> 34>No se puede obtener el último de la LDE de préstamos porque es vacía
+27a19,31
+> ==5555== 96 bytes in 8 blocks are definitely lost in loss record 4 of 7
+> ==5555==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5555==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+> ==5555==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+> ==5555==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+> ==5555==    by 0x10946E: main (principal.cpp:179)
+> ==5555== 
+> ==5555== 2,096 (128 direct, 1,968 indirect) bytes in 4 blocks are definitely lost in loss record 7 of 7
+> ==5555==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5555==    by 0x10D2B2: crearTPrestamo(rep_socio*, rep_libro*, rep_fecha*) (prestamo.cpp:14)
+> ==5555==    by 0x10B0A2: main_crearPrestamo(rep_prestamo*&, rep_socio*&, rep_libro*&, rep_fecha*&) (principal.cpp:590)
+> ==5555==    by 0x1099AE: main (principal.cpp:249)
+> ==5555== 

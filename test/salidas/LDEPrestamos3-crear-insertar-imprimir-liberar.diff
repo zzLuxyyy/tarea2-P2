@@ -1,0 +1,27 @@
+14,25d13
+< Préstamo de libro Todos los fuegos el fuego a Jim Dear.
+< 8/9/2024
+< No retornado
+< Préstamo de libro La ratesa a Jim Dear.
+< 8/10/2024
+< No retornado
+< Préstamo de libro Lo bello y lo triste a Jim Dear.
+< 8/11/2024
+< No retornado
+< Préstamo de libro Cien años de soledad a Jim Dear.
+< 8/11/2025
+< No retornado
+26a15,27
+> ==5537== 96 bytes in 8 blocks are definitely lost in loss record 4 of 7
+> ==5537==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5537==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+> ==5537==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+> ==5537==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+> ==5537==    by 0x10946E: main (principal.cpp:179)
+> ==5537== 
+> ==5537== 2,096 (128 direct, 1,968 indirect) bytes in 4 blocks are definitely lost in loss record 7 of 7
+> ==5537==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+> ==5537==    by 0x10D2B2: crearTPrestamo(rep_socio*, rep_libro*, rep_fecha*) (prestamo.cpp:14)
+> ==5537==    by 0x10B0A2: main_crearPrestamo(rep_prestamo*&, rep_socio*&, rep_libro*&, rep_fecha*&) (principal.cpp:590)
+> ==5537==    by 0x1099AE: main (principal.cpp:249)
+> ==5537== 

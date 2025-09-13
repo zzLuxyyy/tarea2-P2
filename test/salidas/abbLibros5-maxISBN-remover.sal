@@ -1,0 +1,32 @@
+==5620== Invalid read of size 4
+==5620==    at 0x10CC8F: isbnTLibro(rep_libro*) (libro.cpp:39)
+==5620==    by 0x10B957: main_maxISBNLibroABBLibros(rep_abbLibros*) (principal.cpp:776)
+==5620==    by 0x10A0EB: main (principal.cpp:337)
+==5620==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==5620== 
+==5620== 
+==5620== Process terminating with default action of signal 11 (SIGSEGV)
+==5620==  Access not within mapped region at address 0x0
+==5620==    at 0x10CC8F: isbnTLibro(rep_libro*) (libro.cpp:39)
+==5620==    by 0x10B957: main_maxISBNLibroABBLibros(rep_abbLibros*) (principal.cpp:776)
+==5620==    by 0x10A0EB: main (principal.cpp:337)
+==5620==  If you believe this happened as a result of a stack
+==5620==  overflow in your program's main thread (unlikely but
+==5620==  possible), you can try to increase the size of the
+==5620==  main thread stack using the --main-stacksize= flag.
+==5620==  The main thread stack size used in this run was 8388608.
+==5620== 12 bytes in 1 blocks are definitely lost in loss record 2 of 7
+==5620==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5620==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+==5620==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+==5620==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+==5620==    by 0x10946E: main (principal.cpp:179)
+==5620== 
+==5620== 324 (312 direct, 12 indirect) bytes in 1 blocks are definitely lost in loss record 4 of 7
+==5620==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5620==    by 0x10CB9F: crearTLibro(int, char const*, char const*, char const*, char const*, int, rep_fecha*) (libro.cpp:16)
+==5620==    by 0x10A6E5: main_crearLibro(rep_libro*&, rep_fecha*&) (principal.cpp:442)
+==5620==    by 0x109594: main (principal.cpp:196)
+==5620== 
+timeout: the monitored command dumped core
+Segmentation fault
