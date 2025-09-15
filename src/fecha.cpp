@@ -5,31 +5,34 @@ struct rep_fecha
     nat dia, mes, anio;
 };
 
-TFecha crearTFecha(nat dia, nat mes, nat anio)
+TFecha crearTFecha(nat d, nat m, nat a)
 {
     TFecha nuevaFecha = new rep_fecha;
-    nuevaFecha->dia = dia;
-    nuevaFecha->mes = mes;
-    nuevaFecha->anio = anio;
+    nuevaFecha->dia = d;
+    nuevaFecha->mes = m;
+    nuevaFecha->anio = a;
     return nuevaFecha;
 }
 
-void liberarTFecha(TFecha &fecha)
+void liberarTFecha(TFecha &f)
 {
-    if (fecha != NULL) {
-        delete fecha;
-        fecha = NULL;  
+    if (f != NULL)
+    {
+        delete f;
+        f = NULL;
     }
 }
-void imprimirTFecha(TFecha fecha)
+
+void imprimirTFecha(TFecha f)
 {
-    printf("%02u/%02u/%04u\n", fecha->dia, fecha->mes, fecha->anio);
+    printf("%u/%u/%u\n", f->dia, f->mes, f->anio);
 }
 
-TFecha copiarTFecha(TFecha fecha)
+TFecha copiarTFecha(TFecha f)
 {
-    if (fecha == NULL) return NULL;
-    return crearTFecha(fecha->dia, fecha->mes, fecha->anio);
+    if (f == NULL)
+        return NULL;
+    return crearTFecha(f->dia, f->mes, f->anio);
 }
 
 // Funciones auxiliares que voy a crear para aumentar Tfecha
@@ -41,9 +44,9 @@ bool esBisiesto(nat anio)
     return false;
 }
 
-static nat diasMes(nat mes, nat anio)
+static nat diasMes(nat m, nat a)
 {
-    switch (mes)
+    switch (m)
     {
     case 4:
     case 6:
@@ -51,41 +54,40 @@ static nat diasMes(nat mes, nat anio)
     case 11:
         return 30;
     case 2:
-        return esBisiesto(anio) ? 29 : 28;
+        return esBisiesto(a) ? 29 : 28;
     default:
         return 31;
     }
 }
 
-void aumentarTFecha(TFecha &fecha, nat dias)
+void aumentarTFecha(TFecha &f, nat d)
 {
-    fecha->dia += dias;
-    while (fecha->dia > diasMes(fecha->mes, fecha->anio))
-    { // cambio en aumentar, para que sea mas eficiente en numeros grandes
-        nat diasDelMes = diasMes(fecha->mes, fecha->anio);
-        fecha->dia -= diasDelMes;
-        fecha->mes++;
-        if (fecha->mes > 12)
+    f->dia += d;
+    while (f->dia > diasMes(f->mes, f->anio))
+    { // El error estaba en el while, cuando el d era muy grande el bucle se volvia infinito
+        f->dia -= diasMes(f->mes, f->anio);
+        f->mes++;
+        if (f->mes > 12)
         {
-            fecha->mes = 1;
-            fecha->anio++;
+            f->mes = 1;
+            f->anio++;
         }
     }
 }
 
-int compararTFechas(TFecha fecha1, TFecha fecha2)
+int compararTFechas(TFecha f1, TFecha f2)
 {
-    if (fecha1->anio != fecha2->anio)
+    if (f1->anio != f2->anio)
     {
-        return fecha1->anio > fecha2->anio ? 1 : -1;
+        return f1->anio > f2->anio ? 1 : -1;
     }
-    if (fecha1->mes != fecha2->mes)
+    if (f1->mes != f2->mes)
     {
-        return fecha1->mes > fecha2->mes ? 1 : -1;
+        return f1->mes > f2->mes ? 1 : -1;
     }
-    if (fecha1->dia != fecha2->dia)
+    if (f1->dia != f2->dia)
     {
-        return fecha1->dia > fecha2->dia ? 1 : -1;
+        return f1->dia > f2->dia ? 1 : -1;
     }
     return 0;
 }
