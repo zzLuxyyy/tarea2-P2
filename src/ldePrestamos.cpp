@@ -25,7 +25,42 @@ TLDEPrestamos crearTLDEPrestamosVacia()
 
 void insertarTLDEPrestamos(TLDEPrestamos &ldePrestamos, TPrestamo prestamo)
 {
+    nodoDoble* nuevo = new nodoDoble;
+    nuevo->prestamo = prestamo;
+    nuevo->sig = NULL;
+    nuevo->ant = NULL;
+
+    if (ldePrestamos->primero == NULL) {
+        // el nuevo es el primero y el último
+        ldePrestamos->primero = nuevo;
+        ldePrestamos->ultimo = nuevo;
+    } else {
+        TFecha fechaNuevo = fechaRetiroTPrestamo(prestamo);
+        nodoDoble* actual = ldePrestamos->primero;
+        
+        //buscco lugar donde insertarlo
+        while (actual != NULL && compararTFechas(fechaNuevo, fechaRetiroTPrestamo(actual->prestamo)) >= 0) {
+            actual = actual->sig;
+        }
+
+        if (actual == NULL) {
+            ldePrestamos->ultimo->sig = nuevo;
+            nuevo->ant = ldePrestamos->ultimo;
+            ldePrestamos->ultimo = nuevo;
+        } else {
+            nuevo->sig = actual;
+            nuevo->ant = actual->ant;
+            if (actual->ant != NULL) {
+                actual->ant->sig = nuevo;
+            } else {
+                ldePrestamos->primero = nuevo;
+            }
+            actual->ant = nuevo;
+        }
+    }
+    ldePrestamos->tope++;
 }
+
 
 void liberarTLDEPrestamos(TLDEPrestamos &ldePrestamos)
 {
@@ -78,11 +113,15 @@ TPrestamo obtenerUltimoTLDEPrestamos(TLDEPrestamos ldePrestamos)
 
 TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n)
 {
-    return NULL;
+    nodoDoble* actual = ldePrestamos->primero;
+    int contador = 1;
+    while (contador < n) {
+        actual = actual->sig;
+        contador++;
+    }
+    return actual->prestamo;
 }
 
-// criterio = 0 -> prestamos retornados
-// criterio = 1 -> prestamos no retornados
 TLDEPrestamos filtrarPrestamosTLDEPrestamos(TLDEPrestamos &ldePrestamos, int criterio)
 {
     return NULL;
