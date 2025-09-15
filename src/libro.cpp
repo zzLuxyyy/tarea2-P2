@@ -74,7 +74,7 @@ void imprimirTLibro(TLibro l)
 
     // Usamos %d para el tipo int,
     // y usamos %s para el tipo char.
-    printf("Libro: %d\n", l->isbn);
+    printf("Libro %d\n", l->isbn);
     printf("Título: %s\n", l->titulo);
     printf("Autor: %s %s\n", l->nombreAutor, l->apellidoAutor);
     printf("Descripción: %s\n", l->descripcion);

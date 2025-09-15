@@ -22,7 +22,7 @@ TPrestamo crearTPrestamo(TSocio socio, TLibro libro, TFecha fechaRetiro)
 
 void imprimirTPrestamo(TPrestamo prestamo)
 {
-  printf("Préstamo de libro <%s> a <%s> <%s>.\n",
+  printf("Préstamo de libro %s a %s %s.\n",
          tituloTLibro(prestamo->libro),
          nombreTSocio(prestamo->socio),
          apellidoTSocio(prestamo->socio));

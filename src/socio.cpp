@@ -36,7 +36,7 @@ void imprimirTSocio(TSocio socio) {
    printf("Géneros favoritos: ");
 
     for (int i = 0; i < socio->topeGeneros; i++) {
-        printf(" %d", socio->generosFavoritos[i]);
+        printf("%d ", socio->generosFavoritos[i]);
     }
 
     printf("\n");
