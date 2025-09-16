@@ -1,4 +1,3 @@
-
 #include "../include/prestamo.h"
 
 struct rep_prestamo
@@ -15,6 +14,7 @@ TPrestamo crearTPrestamo(TSocio socio, TLibro libro, TFecha fechaRetiro)
   nuevoprestamo->socio = socio;
   nuevoprestamo->libro = libro;
   nuevoprestamo->fechaRetiro = copiarTFecha(fechaRetiro);
+  // liberarTFecha(fechaRetiro); // No liberar aquí, responsabilidad del llamador
   nuevoprestamo->fechaDevolucion = NULL;
 
   return nuevoprestamo;
@@ -37,6 +37,7 @@ void imprimirTPrestamo(TPrestamo prestamo)
     printf("No retornado\n");
   }
 }
+
 
 void liberarTPrestamo(TPrestamo &prestamo)
 {
@@ -85,7 +86,8 @@ void actualizarFechaDevolucionTPrestamo(TPrestamo prestamo, TFecha fechaDevoluci
   {
     liberarTFecha(prestamo->fechaDevolucion);
   }
-  prestamo->fechaDevolucion = copiarTFecha(fechaDevolucion); // antes decia = fechaDevolucion
+  prestamo->fechaDevolucion = copiarTFecha(fechaDevolucion);
+  // liberarTFecha(fechaDevolucion); // No liberar aquí, responsabilidad del llamador
 }
 
 TPrestamo copiarTPrestamo(TPrestamo prestamo)

@@ -78,7 +78,7 @@ void imprimirTLibro(TLibro l)
     printf("Autor: %s %s\n", l->nombreAutor, l->apellidoAutor);
     printf("Descripción: %s\n", l->descripcion);
     printf("Género: %d\n", l->idGeneroLibro);
-    //printf("Fecha de edición: ");
+    printf("Fecha de edición: ");
     imprimirTFecha(l->fechaEdicion);
 }
 
