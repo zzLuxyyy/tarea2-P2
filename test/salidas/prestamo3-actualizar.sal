@@ -1,0 +1,34 @@
+1>Socio de ci 12345678 creado exitosamente.
+2>3>4>5>Préstamo de libro de isbn 411222335 a socio 12345678 creado exitosamente.
+6>Préstamo de libro Todos los fuegos el fuego a Jim Dear.
+8/9/2024
+No retornado
+7>El préstamo NO fue retornado.
+8>9>Se actualizó la fecha de devolución del préstamo.
+10>Fecha de devolución del préstamo:
+8/10/2024
+11>El préstamo fue retornado.
+12>Préstamo de libro Todos los fuegos el fuego a Jim Dear.
+8/9/2024
+8/10/2024
+13>Se ejecutó 'liberarTPrestamo' exitosamente.
+14>Fin.
+==1396== 36 bytes in 3 blocks are definitely lost in loss record 3 of 5
+==1396==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1396==    by 0x10C82F: crearTFecha(unsigned int, unsigned int, unsigned int) (fecha.cpp:10)
+==1396==    by 0x10A2DB: leerFecha(rep_fecha*&) (principal.cpp:372)
+==1396==    by 0x10A348: main_crearFecha(rep_fecha*&) (principal.cpp:378)
+==1396==    by 0x10946E: main (principal.cpp:179)
+==1396== 
+==1396== 156 (144 direct, 12 indirect) bytes in 1 blocks are definitely lost in loss record 4 of 5
+==1396==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1396==    by 0x10CEEC: crearTSocio(int, char const*, char const*, unsigned int, unsigned int, unsigned int) (socio.cpp:18)
+==1396==    by 0x10ABFF: main_crearSocio(rep_socio*&) (principal.cpp:518)
+==1396==    by 0x1097AF: main (principal.cpp:223)
+==1396== 
+==1396== 324 (312 direct, 12 indirect) bytes in 1 blocks are definitely lost in loss record 5 of 5
+==1396==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1396==    by 0x10CB9B: crearTLibro(int, char const*, char const*, char const*, char const*, int, rep_fecha*) (libro.cpp:16)
+==1396==    by 0x10A6E5: main_crearLibro(rep_libro*&, rep_fecha*&) (principal.cpp:442)
+==1396==    by 0x109594: main (principal.cpp:196)
+==1396== 

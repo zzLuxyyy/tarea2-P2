@@ -71,6 +71,7 @@ TFecha fechaEdicionTLibro(TLibro l)
 
 void imprimirTLibro(TLibro l)
 {
+
     // Usamos %d para el tipo int,
     // y usamos %s para el tipo char.
     printf("Libro %d\n", l->isbn);

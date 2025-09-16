@@ -25,7 +25,7 @@ TLDEPrestamos crearTLDEPrestamosVacia()
 
 void insertarTLDEPrestamos(TLDEPrestamos &ldePrestamos, TPrestamo prestamo)
 {
-    nodoDoble *nuevo = new nodoDoble;
+    nodoDoble* nuevo = new nodoDoble;
     nuevo->prestamo = prestamo;
     nuevo->sig = NULL;
     nuevo->ant = NULL;
@@ -102,11 +102,12 @@ nat cantidadTLDEPrestamos(TLDEPrestamos ldePrestamos)
 
 TPrestamo obtenerPrimeroTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
-    return ldePrestamos->primero->prestamo;
+    return NULL;
 }
 
 TPrestamo obtenerUltimoTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
+    if (ldePrestamos->ultimo == NULL) return NULL;
     return ldePrestamos->ultimo->prestamo;
 }
 
@@ -114,7 +115,7 @@ TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n)
 {
     nodoDoble* actual = ldePrestamos->primero;
     int contador = 1;
-    while (contador < n && actual != NULL) { // Agregamos la condición para evitar errores si n es mayor que la cantidad de elementos.
+    while (contador < n) {
         actual = actual->sig;
         contador++;
     }
@@ -123,22 +124,5 @@ TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n)
 
 TLDEPrestamos filtrarPrestamosTLDEPrestamos(TLDEPrestamos &ldePrestamos, int criterio)
 {
-    TLDEPrestamos filtrada = crearTLDEPrestamosVacia();
-    nodoDoble* actual = ldePrestamos->primero;
-    while (actual != NULL) {
-        bool cumple = false;
-        if (criterio == 0 && fueRetornadoTPrestamo(actual->prestamo)) {
-            cumple = true;
-        }
-        if (criterio == 1 && !fueRetornadoTPrestamo(actual->prestamo)) {
-            cumple = true;
-        }
-        if (cumple) {
-            TPrestamo copia = copiarTPrestamo(actual->prestamo);
-            insertarTLDEPrestamos(filtrada, copia);
-        }
-        actual = actual->sig;
-    }
-    liberarTLDEPrestamos(ldePrestamos);
-    return filtrada;
+    return NULL;
 }

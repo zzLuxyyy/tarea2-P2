@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/lucia/Downloads/MaterialesTarea2.tar/MaterialesTarea2/tarea2",
-      "program": "c:/Users/lucia/Downloads/MaterialesTarea2.tar/MaterialesTarea2/tarea2/build/Debug/outDebug",
+      "cwd": "c:/Users/lucia/OneDrive/Documentos/GitHub/tarea2-P2",
+      "program": "c:/Users/lucia/OneDrive/Documentos/GitHub/tarea2-P2/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

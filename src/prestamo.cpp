@@ -1,3 +1,4 @@
+
 #include "../include/prestamo.h"
 
 struct rep_prestamo
@@ -13,8 +14,9 @@ TPrestamo crearTPrestamo(TSocio socio, TLibro libro, TFecha fechaRetiro)
   TPrestamo nuevoprestamo = new rep_prestamo;
   nuevoprestamo->socio = socio;
   nuevoprestamo->libro = libro;
-  nuevoprestamo->fechaRetiro = fechaRetiro;
+  nuevoprestamo->fechaRetiro = copiarTFecha(fechaRetiro);
   nuevoprestamo->fechaDevolucion = NULL;
+
   return nuevoprestamo;
 }
 
@@ -25,26 +27,38 @@ void imprimirTPrestamo(TPrestamo prestamo)
          nombreTSocio(prestamo->socio),
          apellidoTSocio(prestamo->socio));
   imprimirTFecha(prestamo->fechaRetiro);
-
-  if (fueRetornadoTPrestamo(prestamo))
+// Elimine los printf porque no formaban parte del formato pedido.
+ /*
+  if (prestamo->fechaDevolucion != NULL)
   {
     imprimirTFecha(prestamo->fechaDevolucion);
   }
   else
   {
-    printf("No retornado\n");
+    printf("No retornado\n"); // faltaba esta linea.
+  }
+*/
+  // Reemplace el bloque anterior por este if-else que usa la funcion fueRetornadoTPrestamo
+ if (fueRetornadoTPrestamo(prestamo))
+  {
+    imprimirTFecha(prestamo->fechaDevolucion);
+  }
+  else
+  {
+    printf("No retornado\n"); // faltaba esta linea.
   }
 }
 
 
 void liberarTPrestamo(TPrestamo &prestamo)
 {
-  liberarTSocio(prestamo->socio);
-  liberarTLibro(prestamo->libro);
-  liberarTFecha(prestamo->fechaRetiro);
-  liberarTFecha(prestamo->fechaDevolucion);
-  delete prestamo;
-  prestamo = NULL;
+  if (prestamo != NULL)
+  {
+    liberarTFecha(prestamo->fechaRetiro);
+    liberarTFecha(prestamo->fechaDevolucion);
+    delete prestamo;
+    prestamo = NULL;
+  }
 }
 
 TSocio socioTPrestamo(TPrestamo prestamo)
@@ -78,18 +92,16 @@ void actualizarFechaDevolucionTPrestamo(TPrestamo prestamo, TFecha fechaDevoluci
   {
     liberarTFecha(prestamo->fechaDevolucion);
   }
-  prestamo->fechaDevolucion = copiarTFecha(fechaDevolucion);
-  // liberarTFecha(fechaDevolucion); // No liberar aquí, responsabilidad del llamador
+
+  prestamo->fechaDevolucion = copiarTFecha(fechaDevolucion); // antes decia = fechaDevolucion
 }
 
 TPrestamo copiarTPrestamo(TPrestamo prestamo)
 {
   TPrestamo copia = new rep_prestamo;
-
-  copia->socio = copiarTSocio(prestamo->socio);
-  copia->libro = copiarTLibro(prestamo->libro);
+  copia->socio = prestamo->socio;
+  copia->libro = prestamo->libro;
   copia->fechaRetiro = copiarTFecha(prestamo->fechaRetiro);
-  
   if (fueRetornadoTPrestamo(prestamo))
   {
     copia->fechaDevolucion = copiarTFecha(prestamo->fechaDevolucion);
