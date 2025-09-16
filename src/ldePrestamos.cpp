@@ -25,7 +25,7 @@ TLDEPrestamos crearTLDEPrestamosVacia()
 
 void insertarTLDEPrestamos(TLDEPrestamos &ldePrestamos, TPrestamo prestamo)
 {
-    nodoDoble* nuevo = new nodoDoble;
+    nodoDoble *nuevo = new nodoDoble;
     nuevo->prestamo = prestamo;
     nuevo->sig = NULL;
     nuevo->ant = NULL;
@@ -102,12 +102,11 @@ nat cantidadTLDEPrestamos(TLDEPrestamos ldePrestamos)
 
 TPrestamo obtenerPrimeroTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
-    return NULL;
+    return ldePrestamos->primero->prestamo;
 }
 
 TPrestamo obtenerUltimoTLDEPrestamos(TLDEPrestamos ldePrestamos)
 {
-    if (ldePrestamos->ultimo == NULL) return NULL;
     return ldePrestamos->ultimo->prestamo;
 }
 
@@ -115,7 +114,7 @@ TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n)
 {
     nodoDoble* actual = ldePrestamos->primero;
     int contador = 1;
-    while (contador < n) {
+    while (contador < n && actual != NULL) { // Agregamos la condición para evitar errores si n es mayor que la cantidad de elementos.
         actual = actual->sig;
         contador++;
     }

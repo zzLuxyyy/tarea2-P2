@@ -27,35 +27,28 @@ void imprimirTPrestamo(TPrestamo prestamo)
          nombreTSocio(prestamo->socio),
          apellidoTSocio(prestamo->socio));
   imprimirTFecha(prestamo->fechaRetiro);
-// Elimine los printf porque no formaban parte del formato pedido.
- /*
-  if (prestamo->fechaDevolucion != NULL)
+
+  if (fueRetornadoTPrestamo(prestamo))
   {
     imprimirTFecha(prestamo->fechaDevolucion);
   }
   else
   {
-    printf("No retornado\n"); // faltaba esta linea.
-  }
-*/
-  // Reemplace el bloque anterior por este if-else que usa la funcion fueRetornadoTPrestamo
- if (fueRetornadoTPrestamo(prestamo))
-  {
-    imprimirTFecha(prestamo->fechaDevolucion);
-  }
-  else
-  {
-    printf("No retornado\n"); // faltaba esta linea.
+    printf("No retornado\n");
   }
 }
-
 
 void liberarTPrestamo(TPrestamo &prestamo)
 {
   if (prestamo != NULL)
   {
+    liberarTSocio(prestamo->socio);
+    liberarTLibro(prestamo->libro);
     liberarTFecha(prestamo->fechaRetiro);
-    liberarTFecha(prestamo->fechaDevolucion);
+    if (prestamo->fechaDevolucion != NULL)
+    {
+      liberarTFecha(prestamo->fechaDevolucion);
+    }
     delete prestamo;
     prestamo = NULL;
   }
@@ -92,16 +85,17 @@ void actualizarFechaDevolucionTPrestamo(TPrestamo prestamo, TFecha fechaDevoluci
   {
     liberarTFecha(prestamo->fechaDevolucion);
   }
-
   prestamo->fechaDevolucion = copiarTFecha(fechaDevolucion); // antes decia = fechaDevolucion
 }
 
 TPrestamo copiarTPrestamo(TPrestamo prestamo)
 {
   TPrestamo copia = new rep_prestamo;
-  copia->socio = prestamo->socio;
-  copia->libro = prestamo->libro;
+
+  copia->socio = copiarTSocio(prestamo->socio);
+  copia->libro = copiarTLibro(prestamo->libro);
   copia->fechaRetiro = copiarTFecha(prestamo->fechaRetiro);
+  
   if (fueRetornadoTPrestamo(prestamo))
   {
     copia->fechaDevolucion = copiarTFecha(prestamo->fechaDevolucion);
