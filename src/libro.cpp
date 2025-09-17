@@ -21,7 +21,7 @@ TLibro crearTLibro(int isbn, const char titulo[MAX_TITULO], const char nombreAut
     strcpy(nuevoLibro->apellidoAutor, apellidoAutor);
     strcpy(nuevoLibro->descripcion, descripcion);
     nuevoLibro->idGeneroLibro = idGeneroLibro;
-    nuevoLibro->fechaEdicion = copiarTFecha(fechaEdicion); // es un puntero, entonces al asigno directamente
+    nuevoLibro->fechaEdicion = fechaEdicion; // es un puntero, entonces al asigno directamente
     //^ Cambie 'nuevo->' por nuevoLibro ya que la variable 'nuevo' no existe.
 
     return nuevoLibro;
