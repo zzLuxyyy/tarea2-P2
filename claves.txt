@@ -1,0 +1,7 @@
+c7955bd20fb6c8d9c93e31154e5a2e0ec136e040  src/fecha.cpp
+8360e0b7fafb03c9a7c9da6a4163069ca46d0d17  src/libro.cpp
+e55e7ce560b85272e3119e5648ad367eac95310a  src/socio.cpp
+7d24dd9059440f23bcbb8e44960e122a22d88fe0  src/prestamo.cpp
+57273f93afe6aed4df0c0423dc1312196d6c6b70  src/lseSocios.cpp
+17711c78c103250e8e6d8c2babdd5f3b5f53cb54  src/ldePrestamos.cpp
+39cc003e5c81d598c9a371dd806ca86164d892c7  src/abbLibros.cpp
