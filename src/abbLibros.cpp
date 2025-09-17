@@ -1,4 +1,3 @@
-
 #include "../include/abbLibros.h"
 
 struct nodoABB
@@ -24,24 +23,33 @@ TABBLibros crearTABBLibrosVacio()
 }
 
 
-void insertarLibroAux(nodoABB* &nodo, TLibro libro) {
+// Devuelve true si se insertó, false si ya existía
+bool insertarLibroAux(nodoABB* &nodo, TLibro libro) {
     if (nodo == NULL) {
         nodo = new nodoABB;
         nodo->libro = libro;
         nodo->izq = NULL;
         nodo->der = NULL;
+        return true;
     } else {
-        if (isbnTLibro(libro) < isbnTLibro(nodo->libro)) {
-            insertarLibroAux(nodo->izq, libro);
+        int isbnNuevo = isbnTLibro(libro);
+        int isbnActual = isbnTLibro(nodo->libro);
+        if (isbnNuevo < isbnActual) {
+            return insertarLibroAux(nodo->izq, libro);
+        } else if (isbnNuevo > isbnActual) {
+            return insertarLibroAux(nodo->der, libro);
         } else {
-            insertarLibroAux(nodo->der, libro);
+            // Ya existe, no insertar
+            return false;
         }
     }
 }
 
 void insertarLibroTABBLibros(TABBLibros &abbLibros, TLibro libro) {
-    insertarLibroAux(abbLibros->raiz, libro);
-    abbLibros->cantidad++; }
+    if (insertarLibroAux(abbLibros->raiz, libro)) {
+        abbLibros->cantidad++;
+    }
+}
 
 
 void imprimirAux(nodoABB *nodo)
@@ -144,10 +152,59 @@ TLibro maxISBNLibroTABBLibros(TABBLibros abbLibros) {
     return actual->libro;
 }
 
+// Auxiliar para remover un nodo y devolver el nuevo subárbol
+bool removerLibroAux(nodoABB* &nodo, int isbn) {
+    if (nodo == NULL) return false;
+    int isbnActual = isbnTLibro(nodo->libro);
+    if (isbn < isbnActual) {
+        return removerLibroAux(nodo->izq, isbn);
+    } else if (isbn > isbnActual) {
+        return removerLibroAux(nodo->der, isbn);
+    } else {
+        // Nodo encontrado
+        if (nodo->izq == NULL && nodo->der == NULL) {
+            liberarTLibro(nodo->libro);
+            delete nodo;
+            nodo = NULL;
+        } else if (nodo->izq == NULL) {
+            nodoABB* temp = nodo;
+            nodo = nodo->der;
+            liberarTLibro(temp->libro);
+            delete temp;
+        } else if (nodo->der == NULL) {
+            nodoABB* temp = nodo;
+            nodo = nodo->izq;
+            liberarTLibro(temp->libro);
+            delete temp;
+        } else {
+            // Dos hijos: buscar el mayor de la izquierda
+            nodoABB* maxIzq = nodo->izq;
+            nodoABB* padreMaxIzq = nodo;
+            while (maxIzq->der != NULL) {
+                padreMaxIzq = maxIzq;
+                maxIzq = maxIzq->der;
+            }
+            // Copiar datos
+            liberarTLibro(nodo->libro);
+            nodo->libro = copiarTLibro(maxIzq->libro);
+            // Eliminar el nodo de la izquierda
+            if (padreMaxIzq == nodo) {
+                padreMaxIzq->izq = maxIzq->izq;
+            } else {
+                padreMaxIzq->der = maxIzq->izq;
+            }
+            liberarTLibro(maxIzq->libro);
+            delete maxIzq;
+        }
+        return true;
+    }
+}
+
 void removerLibroTABBLibros(TABBLibros &abbLibros, int isbn)
-
 {
-
+    if (removerLibroAux(abbLibros->raiz, isbn)) {
+        abbLibros->cantidad--;
+    }
 }
 
 int cantidadTABBLibros(TABBLibros abbLibros)
