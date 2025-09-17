@@ -61,7 +61,6 @@ void insertarTLDEPrestamos(TLDEPrestamos &ldePrestamos, TPrestamo prestamo)
     ldePrestamos->tope++;
 }
 
-
 void liberarTLDEPrestamos(TLDEPrestamos &ldePrestamos)
 {
     nodoDoble *actual = ldePrestamos->primero;

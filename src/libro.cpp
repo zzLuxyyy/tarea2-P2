@@ -23,7 +23,6 @@ TLibro crearTLibro(int isbn, const char titulo[MAX_TITULO], const char nombreAut
     nuevoLibro->idGeneroLibro = idGeneroLibro;
     nuevoLibro->fechaEdicion = fechaEdicion; // es un puntero, entonces al asigno directamente
     //^ Cambie 'nuevo->' por nuevoLibro ya que la variable 'nuevo' no existe.
-
     return nuevoLibro;
 }
 

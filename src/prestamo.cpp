@@ -80,11 +80,11 @@ bool fueRetornadoTPrestamo(TPrestamo prestamo)
 
 void actualizarFechaDevolucionTPrestamo(TPrestamo prestamo, TFecha fechaDevolucion)
 {
-  if (prestamo->fechaDevolucion != NULL)
+  if (fueRetornadoTPrestamo(prestamo))
   {
     liberarTFecha(prestamo->fechaDevolucion);
   }
-  prestamo->fechaDevolucion = copiarTFecha(fechaDevolucion);
+  prestamo->fechaDevolucion = fechaDevolucion;
   // liberarTFecha(fechaDevolucion); // No liberar aquí, responsabilidad del llamador
 }
 

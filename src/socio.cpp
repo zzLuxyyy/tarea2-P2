@@ -27,15 +27,16 @@ TSocio crearTSocio(int ci, const char nombre[MAX_NOMBRE_SOCIO], const char apell
 }
 
 // Función que imprime la información del socio en el siguiente formato
-void imprimirTSocio(TSocio socio) {
+void imprimirTSocio(TSocio socio)
+{
     printf("Socio %d: %s %s\n", socio->ci, socio->nombre, socio->apellido);
 
-    
     printf("Fecha de alta: ");
-    imprimirTFecha(socio->fechaAlta); 
-   printf("Géneros favoritos: ");
+    imprimirTFecha(socio->fechaAlta);
+    printf("Géneros favoritos: ");
 
-    for (int i = 0; i < socio->topeGeneros; i++) {
+    for (int i = 0; i < socio->topeGeneros; i++)
+    {
         printf("%d ", socio->generosFavoritos[i]);
     }
 
@@ -44,16 +45,9 @@ void imprimirTSocio(TSocio socio) {
 
 void liberarTSocio(TSocio &socio)
 {
-    if (socio != NULL) {
-        if (socio->fechaAlta != NULL) {
-            liberarTFecha(socio->fechaAlta);  
-            socio->fechaAlta = NULL;  
-        }
-        
-        delete socio;
-        socio = NULL;  
-    }
-    
+    liberarTFecha(socio->fechaAlta);
+    delete socio;
+    socio = NULL;
 }
 
 int ciTSocio(TSocio socio)
@@ -97,25 +91,28 @@ bool tieneGeneroFavoritoTSocio(TSocio socio, int idGenero)
     return false;
 }
 
-int cantidadGenerosFavoritosTSocio(TSocio socio){
+int cantidadGenerosFavoritosTSocio(TSocio socio)
+{
     return socio->topeGeneros;
 }
 
 TSocio copiarTSocio(TSocio socio)
 {
-    if (socio == NULL) return NULL;
-    
+    if (socio == NULL)
+        return NULL;
+
     // Crear copia sin usar crearTSocio para evitar leaks
     TSocio copia = new rep_socio;
     copia->ci = socio->ci;
     strcpy(copia->nombre, socio->nombre);
     strcpy(copia->apellido, socio->apellido);
-    copia->fechaAlta = copiarTFecha(socio->fechaAlta);  // Copia profunda
+    copia->fechaAlta = copiarTFecha(socio->fechaAlta); // Copia profunda
     copia->topeGeneros = socio->topeGeneros;
-    
-    for (int i = 0; i < socio->topeGeneros; i++) {
+
+    for (int i = 0; i < socio->topeGeneros; i++)
+    {
         copia->generosFavoritos[i] = socio->generosFavoritos[i];
     }
-    
+
     return copia;
 }
