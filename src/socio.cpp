@@ -47,12 +47,13 @@ void liberarTSocio(TSocio &socio)
     if (socio != NULL) {
         if (socio->fechaAlta != NULL) {
             liberarTFecha(socio->fechaAlta);  
-            socio->fechaAlta = NULL;          
+            socio->fechaAlta = NULL;  
+        }
         
         delete socio;
         socio = NULL;  
-        }
     }
+    
 }
 
 int ciTSocio(TSocio socio)

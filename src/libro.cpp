@@ -29,9 +29,11 @@ TLibro crearTLibro(int isbn, const char titulo[MAX_TITULO], const char nombreAut
 
 void liberarTLibro(TLibro &l)
 {
-    liberarTFecha(l->fechaEdicion); // Primero liberamos la fecha,
-    delete l;
-    l = NULL; // luego liberamos el libro.
+     if (l != NULL) {
+        liberarTFecha(l->fechaEdicion); // Liberar la fecha
+        delete l;
+        l = NULL;
+    }
 }
 
 int isbnTLibro(TLibro l)
@@ -71,7 +73,6 @@ TFecha fechaEdicionTLibro(TLibro l)
 
 void imprimirTLibro(TLibro l)
 {
-
     // Usamos %d para el tipo int,
     // y usamos %s para el tipo char.
     printf("Libro %d\n", l->isbn);

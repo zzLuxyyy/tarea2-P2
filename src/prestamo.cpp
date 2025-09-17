@@ -14,7 +14,7 @@ TPrestamo crearTPrestamo(TSocio socio, TLibro libro, TFecha fechaRetiro)
   TPrestamo nuevoprestamo = new rep_prestamo;
   nuevoprestamo->socio = socio;
   nuevoprestamo->libro = libro;
-  nuevoprestamo->fechaRetiro = copiarTFecha(fechaRetiro);
+  nuevoprestamo->fechaRetiro = fechaRetiro;
   nuevoprestamo->fechaDevolucion = NULL;
 
   return nuevoprestamo;
@@ -22,7 +22,7 @@ TPrestamo crearTPrestamo(TSocio socio, TLibro libro, TFecha fechaRetiro)
 
 void imprimirTPrestamo(TPrestamo prestamo)
 {
-  printf("Préstamo de libro %s a %s %s.\n",
+  printf("Préstamo de libro %s a %s %s. \n",
          tituloTLibro(prestamo->libro),
          nombreTSocio(prestamo->socio),
          apellidoTSocio(prestamo->socio));
@@ -49,13 +49,19 @@ void imprimirTPrestamo(TPrestamo prestamo)
   }
 }
 
-
 void liberarTPrestamo(TPrestamo &prestamo)
 {
   if (prestamo != NULL)
   {
     liberarTFecha(prestamo->fechaRetiro);
-    liberarTFecha(prestamo->fechaDevolucion);
+    if (prestamo->fechaDevolucion != NULL)
+    {
+      liberarTFecha(prestamo->fechaDevolucion);
+    }
+    // Liberar también el socio y el libro
+    //liberarTSocio(prestamo->socio);
+    //liberarTLibro(prestamo->libro);
+    
     delete prestamo;
     prestamo = NULL;
   }
@@ -92,15 +98,14 @@ void actualizarFechaDevolucionTPrestamo(TPrestamo prestamo, TFecha fechaDevoluci
   {
     liberarTFecha(prestamo->fechaDevolucion);
   }
-
-  prestamo->fechaDevolucion = copiarTFecha(fechaDevolucion); // antes decia = fechaDevolucion
+  prestamo->fechaDevolucion = fechaDevolucion; 
 }
 
 TPrestamo copiarTPrestamo(TPrestamo prestamo)
 {
   TPrestamo copia = new rep_prestamo;
-  copia->socio = prestamo->socio;
-  copia->libro = prestamo->libro;
+  copia->socio = copiarTSocio(prestamo->socio);
+  copia->libro = copiarTLibro(prestamo->libro);
   copia->fechaRetiro = copiarTFecha(prestamo->fechaRetiro);
   if (fueRetornadoTPrestamo(prestamo))
   {
